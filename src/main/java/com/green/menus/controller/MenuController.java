@@ -13,6 +13,12 @@ import com.green.menus.mapper.MenuMapper;
 @Controller
 public class MenuController {
 	
+//	 @Autowired : Spring Container 에 미리 new 된 Component 를 찾아서
+//	 MenuMapper 변수에 저장
+//	 @Autowired() - 객체 타입으로 찾아서 연결
+//	 Qualified()  - 객체 이름으로 찾아서 연결
+//	 최근기법은 생성자를 이용한 방식으로 변화
+	
 	@Autowired
 	private  MenuMapper  menuMapper;
 	
@@ -32,7 +38,7 @@ public class MenuController {
 	// /Menus/WriteForm
 	@RequestMapping("/Menus/WriteForm")
 	public String writeForm() {
-		return "/Menus/WriteForm"; // write.jsp로 이동
+		return "/menus/write"; // write.jsp로 이동
 	}
 	
 	// /Menus/WriteForm
@@ -40,20 +46,57 @@ public class MenuController {
 	@RequestMapping("/Menus/Write")
 	public String write (MenuDTO menuDTO, Model model) { 
 		// 넘어온 값
-		System.out.println( "menu_id=" + menuDTO.getMenu_id());
-		System.out.println( "menu_name=" + menuDTO.getMenu_name());
-		System.out.println( "menu_seq=" + menuDTO.getMenu_seq());
+		System.out.println("넘어온값(menuDTO):" + menuDTO);
+//		System.out.println( "menu_id=" + menuDTO.getMenu_id());
+//		System.out.println( "menu_name=" + menuDTO.getMenu_name());
+//		System.out.println( "menu_seq=" + menuDTO.getMenu_seq());
 		
 		
 		// db에 저장
 		menuMapper.insertMenu(menuDTO);
 		
-		// 다시조회
+		return "redirect:/Menus/List";
+		
+		/*
 		List<MenuDTO> menuList = menuMapper.getMenuList();		
 		model.addAttribute("menuList",menuList);
 		
 		return "menus/list";
+		*/
 	}
+	
+	// /Menus/Delete
+	@RequestMapping("/Menus/Delete")
+	public String delete( MenuDTO menuDTO ) {
+		System.out.println("삭제대상:"+ menuDTO);
+		// db 에서 삭제
+		menuMapper.deleteMenu(menuDTO); // mybatis mapper에는 DTO 전달 
+		
+		return "redirect:/Menus/List";
+	}
+	
+	/*
+	 @RequestMapping("/Menus/Delete")
+	public String delete( String menu_id ) {
+		System.out.println("삭제할 menu_id=" + menu_id);
+		
+		MenuDTO menuDTO = new MenuDTO(menu_id, null, 0);
+		// db 에서 삭제
+		menuMapper.deleteMenu(menuDTO); // mybatis mapper에는 DTO 전달 
+	 */
+	
+	//http://localhost:8080/Menus/UpdateForm?menu_id=MENU01
+	@RequestMapping("/Menus/UpdateForm")
+	public String updateForm(MenuDTO menuDTO, Model model) {
+		System.out.println("넘어온 menuDTO : " + menuDTO);
+		//수정할 자료를 db에서 검색 : 수정할 정보가 담긴 menu
+		MenuDTO menu = menuMapper.getMenu(menuDTO);
+		model.addAttribute("menu", menu);
+		
+		return "menus/update";
+				
+	}
+	
 	
 }
 

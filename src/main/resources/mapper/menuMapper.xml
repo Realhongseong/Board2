@@ -25,5 +25,13 @@ Windows -> Preferences -> 검색:xml
 	VALUES( #{ menu_id }, #{ menu_name }, #{ menu_seq } )
 	
 	</insert>
+	
+	<delete id="deleteMenu">
+	
+	DELETE FROM MENUS
+	 WHERE MENU_ID = #{ menu_id }
+	
+	</delete>
+	
   
 </mapper>

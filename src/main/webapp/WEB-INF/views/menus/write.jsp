@@ -8,11 +8,40 @@
 <link rel="shortcut icon" href="/img/favicon2.png" type="image/x-icon">
 <link href="/css/common.css" rel="stylesheet"/>
 
+<style>
+	table {width:100%}
+	td{
+	  padding:10px 5px;
+	  text-align : center;
+	}
+	
+	td:nth-of-type(1){
+	background:black;
+	color : white;
+	border : 1px solid white;
+	}
+	
+	tr:last-child > td {
+		background:white;
+		border : 1px solid black;
+	}
+	
+	input[type=text], input[type=number]{
+		width : 100%;
+	}
+	
+	input[type=button], input[type=submit]{
+		width : 100px;
+	}
+	
+	
+</style>
+
 </head>
 <body>
 <main>
 <h2>메뉴 등록</h2>
-<from action="/Menus/Write" method="get">
+<form action="/Menus/Write" method="get">
 <table>
 <tr>
 <td>메뉴 아이디</td>
@@ -33,7 +62,7 @@
 </td>
 </tr>
 </table>
-</from>
+</form>
 
 </main>
 </body>
