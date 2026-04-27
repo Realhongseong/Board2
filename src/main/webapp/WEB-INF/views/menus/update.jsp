@@ -40,26 +40,26 @@
 </head>
 <body>
 <main>
-<h2>메뉴 등록</h2>
-<form action="/Menus/Write" method="get">
+<h2>메뉴 수정</h2>
+<form action="/Menus/Update" method="get">
 <table>
 <tr>
 <td>메뉴 아이디</td>
-<td><input type="text" name="menu_id"/></td>
+<td><input type="text" name="menu_id" value="${menu.menu_id}" readonly /></td>
 </tr>
 <tr>
 <td>메뉴 이름</td>
-<td><input type="text" name="menu_name"></td>
+<td><input type="text" name="menu_name" value="${menu.menu_name}"/></td>
 </tr>
 <tr>
 <td>메뉴 순서</td>
-<td><input type="number" name="menu_seq"></td>
+<td><input type="number" name="menu_seq" value="${menu.menu_seq}"/></td>
 </tr>
 <tr>
 <td colspan="2">
 <input type="submit" value="추가">
 <input type="button" value="목록">
-onclick="window.location.href='Menus/List'"
+	onclick="window.location.href='/Menus/List'"
 </td>
 </tr>
 </table>

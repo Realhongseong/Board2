@@ -89,14 +89,43 @@ public class MenuController {
 	@RequestMapping("/Menus/UpdateForm")
 	public String updateForm(MenuDTO menuDTO, Model model) {
 		System.out.println("넘어온 menuDTO : " + menuDTO);
+		
 		//수정할 자료를 db에서 검색 : 수정할 정보가 담긴 menu
 		MenuDTO menu = menuMapper.getMenu(menuDTO);
 		model.addAttribute("menu", menu);
+		System.out.println("조회한 menuDTO : " + menu);
 		
 		return "menus/update";
 				
 	}
 	
+	// /Menus/Update
+	@RequestMapping("/Menus/Update")
+	public String update(MenuDTO menuDTO) {
+		
+		// 넘어온 정보로 db를 수정한다
+		menuMapper.updateMenu( menuDTO );
+				
+		return "redirect:/Menus/List";
+		
+	}
+	
+	// /Menus/WriteForm2 - 메뉴이름으로만 추가하기
+	@RequestMapping("/Menus/WriteForm2")
+	public String  writeForm2() {
+		
+		return "menus/write2";
+		
+	}
+	
+	// /Menus/WriteForm2?menu_name=JAVA
+	@RequestMapping("/Menus/Write2")
+	public String write2(MenuDTO menuDTO) {
+		
+		menuMapper.insertMenu2(menuDTO);
+		
+		return "redirect:/Menus/List";
+	}
 	
 }
 

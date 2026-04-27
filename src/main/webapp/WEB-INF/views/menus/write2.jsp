@@ -41,19 +41,11 @@
 <body>
 <main>
 <h2>메뉴 등록</h2>
-<form action="/Menus/Write" method="get">
+<form action="/Menus/Write2" method="get">
 <table>
-<tr>
-<td>메뉴 아이디</td>
-<td><input type="text" name="menu_id"/></td>
-</tr>
 <tr>
 <td>메뉴 이름</td>
 <td><input type="text" name="menu_name"></td>
-</tr>
-<tr>
-<td>메뉴 순서</td>
-<td><input type="number" name="menu_seq"></td>
 </tr>
 <tr>
 <td colspan="2">
