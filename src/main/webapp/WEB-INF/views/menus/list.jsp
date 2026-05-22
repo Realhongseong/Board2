@@ -54,7 +54,7 @@
 	      </td>
 	    </tr>
 	    
-	    <c:forEach  var="menu"  items="${ menuList }">
+	    <c:forEach  var="menu"  items=" ${ menuList }">
 	    <tr>
 	      <td> ${ menu.menu_id   }  </td>
 	      <td> ${ menu.menu_name }  </td>

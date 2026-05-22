@@ -25,7 +25,7 @@ public class MenuController{
 	@RequestMapping("/Menus/List") // 목록조회
 	public String list(Model model) {
 		List<MenuDTO> menuList = menuMapper.getMenuList();
-		System.out.println(menuList);
+		//System.out.println(menuList);
 		
 		model.addAttribute("menuList",menuList);
 		
